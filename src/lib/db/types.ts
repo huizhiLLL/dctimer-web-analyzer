@@ -46,6 +46,21 @@ export type SessionEntity = {
   lastSolveAt: string | null
 }
 
+export type SolveEntity = {
+  id: number
+  sessionId: number
+  baseTimeMs: number
+  penalty: 0 | 1 | 2
+  isDnf: boolean
+  finalTimeMs: number | null
+  scramble: string | null
+  recordedAt: string | null
+  note: string | null
+  phases: number[]
+  moves: string | null
+  sourceTable: string
+}
+
 export type ImportDatabaseSummary = {
   fileName: string
   fileSize: number
@@ -53,4 +68,5 @@ export type ImportDatabaseSummary = {
   schema: SqliteSchemaSnapshot
   check: DctimerSchemaCheck
   sessions: SessionEntity[]
+  solves: SolveEntity[]
 }

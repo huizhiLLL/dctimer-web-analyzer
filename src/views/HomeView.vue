@@ -168,6 +168,10 @@ function formatBytes(size: number) {
                 <span class="mini-label">分组数量</span>
                 <strong>{{ summary.sessions.length }}</strong>
               </div>
+              <div class="mini-card">
+                <span class="mini-label">成绩数量</span>
+                <strong>{{ summary.solves.length }}</strong>
+              </div>
             </div>
 
             <div class="table-list-card">
@@ -196,6 +200,23 @@ function formatBytes(size: number) {
                     <p>{{ session.puzzle?.displayName ?? 'Unknown puzzle type' }}</p>
                   </div>
                   <span>#{{ session.id }}</span>
+                </li>
+              </ul>
+            </div>
+
+            <div v-if="summary.solves.length" class="table-list-card">
+              <div class="table-list-head">
+                <span class="stat-label">已解析的成绩数据</span>
+                <span class="table-list-meta">固定结果表和 `resultstb` 都已经接上，后面再继续补 session 统计回填。</span>
+              </div>
+
+              <ul class="session-list">
+                <li v-for="solve in summary.solves.slice(0, 6)" :key="`${solve.sourceTable}-${solve.id}`" class="session-item">
+                  <div>
+                    <strong>Session #{{ solve.sessionId }} · {{ solve.isDnf ? 'DNF' : `${(solve.finalTimeMs ?? 0) / 1000}s` }}</strong>
+                    <p>{{ solve.sourceTable }} · {{ solve.recordedAt ?? '无记录时间' }}</p>
+                  </div>
+                  <span>#{{ solve.id }}</span>
                 </li>
               </ul>
             </div>

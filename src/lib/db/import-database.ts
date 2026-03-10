@@ -1,6 +1,7 @@
 import { openSqliteDatabase } from './sql-engine'
 import { checkDctimerSchema, inspectSchema } from './schema-inspector'
 import { parseSessions } from './session-parser'
+import { parseSolves } from './solve-parser'
 import type { ImportDatabaseSummary } from './types'
 
 export async function importDatabaseSummary(file: File): Promise<ImportDatabaseSummary> {
@@ -10,6 +11,7 @@ export async function importDatabaseSummary(file: File): Promise<ImportDatabaseS
     db = await openSqliteDatabase(file)
     const schema = inspectSchema(db)
     const check = checkDctimerSchema(schema)
+    const solves = parseSolves(db, schema.tableNames)
     const sessions = check.hasSessionTable ? parseSessions(db) : []
 
     return {
@@ -19,6 +21,7 @@ export async function importDatabaseSummary(file: File): Promise<ImportDatabaseS
       schema,
       check,
       sessions,
+      solves,
     }
   } finally {
     db?.close()
