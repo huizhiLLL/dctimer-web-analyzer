@@ -60,9 +60,65 @@ a:focus-visible {
   min-height: 100vh;
 }
 
-.app-shell {
+.site-shell {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-content {
+  flex: 1;
+}
+
+.app-shell {
+  min-height: 100%;
   padding: 16px;
+}
+
+.site-footer {
+  padding: 0 20px 24px;
+  text-align: center;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer-inline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 500;
+  flex-wrap: wrap;
+}
+
+.site-footer-separator {
+  color: #94a3b8;
+}
+
+.site-footer-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  color: #1e3a8a;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.14) 0%, rgba(37, 99, 235, 0.22) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.18);
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.12);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
+}
+
+.site-footer-link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.18);
 }
 
 .topbar {
@@ -673,6 +729,10 @@ a:focus-visible {
 @media (max-width: 640px) {
   .app-shell {
     padding: 12px;
+  }
+
+  .site-footer {
+    padding: 0 16px 20px;
   }
 
   .topbar,
