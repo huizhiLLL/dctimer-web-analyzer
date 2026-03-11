@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import {
   Database,
   ShieldCheck,
@@ -9,10 +10,13 @@ import {
   CheckCircle2,
 } from 'lucide-vue-next'
 import { useAppStore } from '../stores/app'
+import { useAnalyzerStore } from '../stores/analyzer'
 import { importDatabaseSummary } from '../lib/db/import-database'
 import type { ImportDatabaseSummary } from '../lib/db/types'
 
+const router = useRouter()
 const app = useAppStore()
+const analyzer = useAnalyzerStore()
 
 const fileInput = ref<HTMLInputElement | null>(null)
 const isInspecting = ref(false)
@@ -75,12 +79,17 @@ async function handleFileChange(event: Event) {
 
   try {
     summary.value = await importDatabaseSummary(file)
+    analyzer.setSummary(summary.value)
   } catch (error) {
     importError.value = error instanceof Error ? error.message : '文件读取失败，可能不是有效的 SQLite 数据库。'
   } finally {
     isInspecting.value = false
     input.value = ''
   }
+}
+
+function goToFilters() {
+  router.push('/filters')
 }
 
 function formatBytes(size: number) {
@@ -120,7 +129,7 @@ function formatBytes(size: number) {
               <FileSearch :size="18" />
               {{ isInspecting ? '正在读取数据库…' : '导入 .db 文件' }}
             </button>
-            <button class="btn btn-secondary" type="button">查看设计基线</button>
+            <button class="btn btn-secondary" type="button" @click="goToFilters" :disabled="!summary">进入分组筛选</button>
           </div>
 
           <input
@@ -259,7 +268,7 @@ function formatBytes(size: number) {
               </div>
               <div class="mini-card">
                 <span class="mini-label">下一步</span>
-                <strong>解析 session</strong>
+                <strong>进入筛选页</strong>
               </div>
             </div>
           </template>

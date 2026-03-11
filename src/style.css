@@ -425,6 +425,97 @@ a:focus-visible {
   gap: 14px;
 }
 
+.filter-hero-card {
+  align-items: stretch;
+}
+
+.filter-summary-panel {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.filter-toolbar {
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filter-toolbar-actions {
+  margin-bottom: 18px;
+}
+
+.pill-button {
+  min-height: 42px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(203, 213, 225, 0.95);
+  background: rgba(255, 255, 255, 0.9);
+  color: #0f172a;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.pill-button[data-active='true'] {
+  color: #eff6ff;
+  background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+  border-color: rgba(37, 99, 235, 0.2);
+}
+
+.filter-session-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.filter-session-card {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+  border-radius: 22px;
+  border: 1px solid rgba(226, 232, 240, 0.96);
+  background: rgba(255, 255, 255, 0.92);
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.filter-session-card:hover {
+  transform: translateY(-1px);
+}
+
+.filter-session-card[data-selected='true'] {
+  border-color: rgba(37, 99, 235, 0.34);
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.12);
+}
+
+.filter-session-head,
+.filter-session-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.filter-session-card strong {
+  font-size: 1rem;
+}
+
+.filter-session-card p,
+.filter-session-meta {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.92rem;
+}
+
+.topbar-button {
+  min-width: 132px;
+  justify-content: center;
+}
+
 .feature-card {
   padding: 18px;
 }
@@ -455,7 +546,8 @@ a:focus-visible {
     grid-template-columns: 1fr;
   }
 
-  .feature-grid {
+  .feature-grid,
+  .filter-session-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -498,7 +590,8 @@ a:focus-visible {
     width: fit-content;
   }
 
-  .stat-grid {
+  .stat-grid,
+  .filter-summary-panel {
     grid-template-columns: 1fr;
   }
 }
