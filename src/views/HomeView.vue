@@ -125,11 +125,23 @@ function formatBytes(size: number) {
           </p>
 
           <div class="hero-actions">
-            <button class="btn btn-primary" type="button" @click="openFilePicker" :disabled="isInspecting">
+            <button
+              :class="['btn', summary ? 'btn-secondary' : 'btn-primary']"
+              type="button"
+              @click="openFilePicker"
+              :disabled="isInspecting"
+            >
               <FileSearch :size="18" />
-              {{ isInspecting ? '正在导入数据库…' : '导入 .db 文件' }}
+              {{ isInspecting ? '正在导入数据库…' : summary ? '重新导入' : '导入 .db 文件' }}
             </button>
-            <button class="btn btn-secondary" type="button" @click="goToFilters" :disabled="!summary">选择分析分组</button>
+            <button
+              :class="['btn', summary ? 'btn-primary' : 'btn-secondary']"
+              type="button"
+              @click="goToFilters"
+              :disabled="!summary"
+            >
+              {{ summary ? '开始分析' : '选择分析分组' }}
+            </button>
           </div>
 
           <input
