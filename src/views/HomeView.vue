@@ -2,7 +2,6 @@
 import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import {
-  Database,
   ShieldCheck,
   Sparkles,
   FileSearch,
