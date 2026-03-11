@@ -119,7 +119,6 @@ const insights = computed(() => {
 })
 
 const maxSessionCount = computed(() => Math.max(...topSessions.value.map((item) => item.solveCount), 1))
-const maxPuzzleCount = computed(() => Math.max(...puzzleDistribution.value.map((item) => item.count), 1))
 const maxYearCount = computed(() => Math.max(...yearDistribution.value.map((item) => item.count), 1))
 
 function barWidth(value: number, max: number) {
@@ -215,22 +214,6 @@ function goFilters() {
                     <span>{{ session.solveCount }}</span>
                   </div>
                   <div class="bar-track"><div class="bar-fill" :style="{ width: barWidth(session.solveCount, maxSessionCount) }"></div></div>
-                </li>
-              </ul>
-            </article>
-
-            <article class="table-list-card">
-              <div class="table-list-head">
-                <span class="stat-label">项目分布</span>
-                <span class="table-list-meta">按项目汇总成绩数量。</span>
-              </div>
-              <ul class="bar-list">
-                <li v-for="item in puzzleDistribution" :key="item.name" class="bar-item">
-                  <div class="bar-row">
-                    <strong>{{ item.name }}</strong>
-                    <span>{{ item.count }}</span>
-                  </div>
-                  <div class="bar-track"><div class="bar-fill" :style="{ width: barWidth(item.count, maxPuzzleCount) }"></div></div>
                 </li>
               </ul>
             </article>
