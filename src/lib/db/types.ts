@@ -61,12 +61,24 @@ export type SolveEntity = {
   sourceTable: string
 }
 
+export type DatabaseOverview = {
+  sessionCount: number
+  solveCount: number
+  validSolveCount: number
+  dnfCount: number
+  plus2Count: number
+  yearRange: number[]
+  firstSolveAt: string | null
+  lastSolveAt: string | null
+}
+
 export type ImportDatabaseSummary = {
   fileName: string
   fileSize: number
   inspectedAt: string
   schema: SqliteSchemaSnapshot
   check: DctimerSchemaCheck
+  overview: DatabaseOverview
   sessions: SessionEntity[]
   solves: SolveEntity[]
 }

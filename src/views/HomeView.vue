@@ -166,11 +166,19 @@ function formatBytes(size: number) {
               </div>
               <div class="mini-card">
                 <span class="mini-label">分组数量</span>
-                <strong>{{ summary.sessions.length }}</strong>
+                <strong>{{ summary.overview.sessionCount }}</strong>
               </div>
               <div class="mini-card">
                 <span class="mini-label">成绩数量</span>
-                <strong>{{ summary.solves.length }}</strong>
+                <strong>{{ summary.overview.solveCount }}</strong>
+              </div>
+              <div class="mini-card">
+                <span class="mini-label">有效成绩</span>
+                <strong>{{ summary.overview.validSolveCount }}</strong>
+              </div>
+              <div class="mini-card">
+                <span class="mini-label">DNF 数量</span>
+                <strong>{{ summary.overview.dnfCount }}</strong>
               </div>
             </div>
 
@@ -190,14 +198,18 @@ function formatBytes(size: number) {
             <div v-if="summary.sessions.length" class="table-list-card">
               <div class="table-list-head">
                 <span class="stat-label">已解析的分组</span>
-                <span class="table-list-meta">先把 `sessiontb` 读出来了，后面会继续接成绩表。</span>
+                <span class="table-list-meta">现在分组已经带上了解次统计，后面可以直接接筛选页了。</span>
               </div>
 
               <ul class="session-list">
                 <li v-for="session in summary.sessions.slice(0, 8)" :key="session.id" class="session-item">
                   <div>
                     <strong>{{ session.name }}</strong>
-                    <p>{{ session.puzzle?.displayName ?? 'Unknown puzzle type' }}</p>
+                    <p>
+                      {{ session.puzzle?.displayName ?? 'Unknown puzzle type' }}
+                      · {{ session.solveCount }} solves
+                      <template v-if="session.lastSolveAt"> · {{ session.lastSolveAt }}</template>
+                    </p>
                   </div>
                   <span>#{{ session.id }}</span>
                 </li>
@@ -207,7 +219,10 @@ function formatBytes(size: number) {
             <div v-if="summary.solves.length" class="table-list-card">
               <div class="table-list-head">
                 <span class="stat-label">已解析的成绩数据</span>
-                <span class="table-list-meta">固定结果表和 `resultstb` 都已经接上，后面再继续补 session 统计回填。</span>
+                <span class="table-list-meta">
+                  年份覆盖：{{ summary.overview.yearRange.join(' · ') || '未知' }}
+                  <template v-if="summary.overview.firstSolveAt"> · 首条：{{ summary.overview.firstSolveAt }}</template>
+                </span>
               </div>
 
               <ul class="session-list">
