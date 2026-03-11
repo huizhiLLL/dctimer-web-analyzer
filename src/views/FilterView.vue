@@ -29,8 +29,8 @@ function goHome() {
       <section v-if="!hasSummary" class="section-block section-block-muted">
         <div class="section-heading narrow">
           <p class="section-kicker">No Data</p>
-          <h3>还没有可分析的数据</h3>
-          <p>先回首页导入 `.db` 文件，这里才会出现可选择的分组。</p>
+          <h3>还没有数据</h3>
+          <p>先回首页导入 `.db` 文件，这里才会出现可选分组。</p>
         </div>
       </section>
 
@@ -38,9 +38,9 @@ function goHome() {
         <section class="hero-card filter-hero-card">
           <div class="hero-copy">
             <p class="hero-kicker">Year + Sessions</p>
-            <h2 class="hero-title">先把这次要分析的范围圈出来。</h2>
+            <h2 class="hero-title">先圈出这次要分析的范围。</h2>
             <p class="hero-text">
-              先选年份，再挑要纳入报告的分组。后续的统计结果和训练回顾都会基于这里的选择生成。
+              先选年份，再挑分组。后面的统计和回顾都会按这里的选择来生成。
             </p>
           </div>
 
@@ -68,7 +68,7 @@ function goHome() {
           <div class="section-heading">
             <p class="section-kicker">Step 1</p>
             <h3>选择年份</h3>
-            <p>可以先看全部时间，也可以只聚焦某一年，快速缩小分析范围。</p>
+            <p>可以看全部时间，也可以只看某一年。</p>
           </div>
 
           <div class="filter-toolbar">
@@ -99,7 +99,7 @@ function goHome() {
           <div class="section-heading">
             <p class="section-kicker">Step 2</p>
             <h3>选择分组</h3>
-            <p>保留真正想回顾的训练分组，把测试组、临时组和不需要的数据先排除掉。</p>
+            <p>保留想看的训练分组，把测试组和临时组先排掉。</p>
           </div>
 
           <div class="filter-toolbar filter-toolbar-actions">

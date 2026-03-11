@@ -25,18 +25,18 @@ const summary = ref<ImportDatabaseSummary | null>(null)
 
 const highlights = [
   {
-    title: '本地解析',
-    description: '直接在浏览器里读取 DCTimer 导出的 .db 文件，不经过服务器。',
+    title: '本地读取',
+    description: '直接在浏览器里读取 DCTimer 导出的 .db 文件，不用上传。',
     icon: Database,
   },
   {
-    title: '分组筛选',
-    description: '先选要分析的分组，再生成更像作品的年度总结，而不是杂乱统计页。',
+    title: '先筛再看',
+    description: '先选分组，再看结果，数据会清爽很多。',
     icon: Sparkles,
   },
   {
-    title: '隐私友好',
-    description: '数据留在你的设备上，适合长期成绩回顾与分享前预览。',
+    title: '数据留本地',
+    description: '整个过程都在你的设备上完成，适合放心预览和回顾。',
     icon: ShieldCheck,
   },
 ]
@@ -56,7 +56,7 @@ const detectedStatus = computed(() => {
 
   return {
     tone: 'warning',
-    label: '文件能打开，但暂时不像 DCTimer 导出库',
+    label: '文件能打开，但不像 DCTimer 导出的数据库',
     icon: AlertCircle,
   }
 })
@@ -119,9 +119,9 @@ function formatBytes(size: number) {
       <section class="hero-card">
         <div class="hero-copy">
           <p class="hero-kicker">纯前端 · 本地分析 · 隐私友好</p>
-          <h2 class="hero-title">把 DCTimer 的数据库，整理成一份值得回看的训练报告。</h2>
+          <h2 class="hero-title">把 DCTimer 数据库整理成一份清楚的训练报告。</h2>
           <p class="hero-text">
-            {{ app.tagline }} 先选择想纳入分析的分组，再生成更清晰的训练概览与年度回顾。整个过程都在浏览器本地完成。
+            {{ app.tagline }} 先选分组，再看结果。整个过程都在浏览器本地完成。
           </p>
 
           <div class="hero-actions">
@@ -250,7 +250,7 @@ function formatBytes(size: number) {
             <div class="stat-card stat-card-primary">
               <span class="stat-label">开始使用</span>
               <strong class="stat-value">导入数据库</strong>
-              <span class="stat-meta">选择 DCTimer 导出的数据库文件后，就可以开始查看分组和成绩概览。</span>
+              <span class="stat-meta">导入 DCTimer 导出的数据库后，就可以先看分组和成绩概览。</span>
             </div>
 
             <div class="stat-grid">
@@ -278,9 +278,9 @@ function formatBytes(size: number) {
       <section class="section-block">
         <div class="section-heading">
           <p class="section-kicker">Core Experience</p>
-          <h3>你会得到什么</h3>
+          <h3>你会看到什么</h3>
           <p>
-            移动端优先，卡片化呈现，适合快速回顾自己的训练数据，也方便后续整理成更完整的年度报告。
+            页面以卡片方式展示，方便你快速回顾训练数据，也方便后续继续整理。
           </p>
         </div>
 
@@ -298,9 +298,9 @@ function formatBytes(size: number) {
       <section class="section-block section-block-muted">
         <div class="section-heading narrow">
           <p class="section-kicker">Next Step</p>
-          <h3>接下来可以继续筛选并查看训练结构</h3>
+          <h3>下一步</h3>
           <p>
-            导入完成后，可以按年份和分组缩小范围，为后续的统计、趋势和年度回顾准备更干净的数据。
+            导入完成后，可以按年份和分组缩小范围，继续看统计和训练分布。
           </p>
         </div>
       </section>
