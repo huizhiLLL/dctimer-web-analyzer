@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { Layers3, CalendarRange, CheckCheck, Eraser } from 'lucide-vue-next'
+import { Layers3, CalendarRange, CheckCheck, Eraser, BarChart3 } from 'lucide-vue-next'
 import { useAnalyzerStore } from '../stores/analyzer'
 
 const router = useRouter()
@@ -12,6 +12,10 @@ const selectedCount = computed(() => analyzer.filter.includedSessionIds.length)
 
 function goHome() {
   router.push('/')
+}
+
+function goReport() {
+  router.push('/report')
 }
 </script>
 
@@ -110,6 +114,10 @@ function goHome() {
             <button class="pill-button" type="button" @click="analyzer.clearSessions()">
               <Eraser :size="16" />
               全不选
+            </button>
+            <button class="pill-button pill-button-primary" type="button" @click="goReport" :disabled="!selectedCount">
+              <BarChart3 :size="16" />
+              查看结果
             </button>
           </div>
 
