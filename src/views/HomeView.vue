@@ -8,6 +8,7 @@ import {
   FileSearch,
   AlertCircle,
   CheckCircle2,
+  Share,
 } from 'lucide-vue-next'
 import { useAppStore } from '../stores/app'
 import { useAnalyzerStore } from '../stores/analyzer'
@@ -25,19 +26,19 @@ const summary = ref<ImportDatabaseSummary | null>(null)
 
 const highlights = [
   {
-    title: '本地读取',
-    description: '直接在浏览器里读取 DCTimer 导出的 .db 文件，不用上传。',
-    icon: Database,
+    title: '本地处理',
+    description: '所有操作均在浏览器本地环境进行，无需上传到服务器',
+    icon: ShieldCheck,
   },
   {
     title: '先筛再看',
-    description: '先选分组，再看结果，数据会清爽很多。',
+    description: '先初步筛选，再看结果，数据清爽。',
     icon: Sparkles,
   },
   {
-    title: '数据留本地',
-    description: '整个过程都在你的设备上完成，适合放心预览和回顾。',
-    icon: ShieldCheck,
+    title: '一键分享',
+    description: '多套主题，精致报告，一键分享',
+    icon: Share,
   },
 ]
 
@@ -109,19 +110,18 @@ function formatBytes(size: number) {
   <div class="app-shell">
     <header class="topbar">
       <div>
-        <p class="eyebrow">训练报告</p>
+        <p class="eyebrow">Practice Report</p>
         <h1 class="brand">{{ app.appName }}</h1>
       </div>
-      <div class="topbar-chip">本地解析</div>
     </header>
 
     <main class="page-wrap">
       <section class="hero-card hero-card-single">
         <div class="hero-copy">
-          <p class="hero-kicker">本地读取 · 本地分析 · 无需上传</p>
-          <h2 class="hero-title">把 DCTimer 数据库整理成一份训练报告。</h2>
+          <p class="hero-kicker">本地处理 · 直观分析 · 一键分享</p>
+          <h2 class="hero-title">深度分析你的 DCTimer 练习数据。</h2>
           <p class="hero-text">
-            DCTimer数据导出方法：打开DCTimer-左上角展开-导入导出数据库-选择导出-确定路径-保存（目前仅测试安卓版本）
+            <strong>DCTimer数据导出：</strong>打开 DCTimer - 左上角展开 - 导入导出数据库 - 选择导出 - 确定路径 - 保存（目前仅测试安卓版本）
           </p>
 
           <div class="hero-actions">
@@ -132,7 +132,7 @@ function formatBytes(size: number) {
               :disabled="isInspecting"
             >
               <FileSearch :size="18" />
-              {{ isInspecting ? '正在导入数据库…' : summary ? '重新导入' : '导入 .db 文件' }}
+              {{ isInspecting ? '正在导入数据库…' : summary ? '重新导入' : '导入数据（.db）' }}
             </button>
             <button
               :class="['btn', summary ? 'btn-primary' : 'btn-secondary']"
@@ -198,10 +198,9 @@ function formatBytes(size: number) {
 
       <section class="section-block">
         <div class="section-heading">
-          <p class="section-kicker">主要特点</p>
-          <h3>你会看到什么</h3>
+          <h3>主要特点</h3>
           <p>
-            页面以卡片方式展示，方便回顾训练数据，也方便继续整理。
+            SOME FEATURES  
           </p>
         </div>
 

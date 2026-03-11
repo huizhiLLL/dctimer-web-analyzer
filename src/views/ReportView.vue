@@ -134,8 +134,8 @@ function goFilters() {
   <div class="app-shell">
     <header class="topbar">
       <div>
-        <p class="eyebrow">结果报告</p>
-        <h1 class="brand">训练结果</h1>
+        <p class="eyebrow">Analysis Result</p>
+        <h1 class="brand">分析结果</h1>
       </div>
       <button class="btn btn-secondary topbar-button" type="button" @click="goFilters">返回筛选</button>
     </header>
@@ -143,33 +143,33 @@ function goFilters() {
     <main class="page-wrap">
       <section v-if="!hasSummary" class="section-block section-block-muted">
         <div class="section-heading narrow">
-          <p class="section-kicker">尚无数据</p>
+          <p class="section-kicker">没有数据QAQ</p>
           <h3>还没有可查看的报告</h3>
-          <p>先导入数据库并完成筛选，这里才会生成结果。</p>
+          <p>先导入数据库并完成筛选，这里才会生成结果哦。</p>
         </div>
       </section>
 
       <template v-else>
         <section class="hero-card filter-hero-card">
           <div class="hero-copy">
-            <p class="hero-kicker">结果概览</p>
-            <h2 class="hero-title">这是一份基于当前筛选条件生成的训练结果。</h2>
+            <p class="hero-kicker">Result Overview</p>
+            <h2 class="hero-title">分析结果出来啦~</h2>
             <p class="hero-text">
-              先看总览，再看分布和重点结论。后面的页面可以继续在这版基础上补充图表和叙事。
+              总览，分布和重点结论，图表（todo）
             </p>
           </div>
 
           <div class="hero-panel filter-summary-panel">
             <div class="mini-card">
-              <span class="mini-label">当前范围</span>
+              <span class="mini-label">时间范围</span>
               <strong>{{ overview.year === 'all' ? '全部时间' : overview.year }}</strong>
             </div>
             <div class="mini-card">
-              <span class="mini-label">分组数</span>
+              <span class="mini-label">分组</span>
               <strong>{{ overview.sessionCount }}</strong>
             </div>
             <div class="mini-card">
-              <span class="mini-label">成绩数</span>
+              <span class="mini-label">成绩</span>
               <strong>{{ overview.solveCount }}</strong>
             </div>
             <div class="mini-card">
@@ -181,9 +181,8 @@ function goFilters() {
 
         <section class="section-block">
           <div class="section-heading">
-            <p class="section-kicker">总览</p>
+            <p class="section-kicker">Overview</p>
             <h3>基础情况</h3>
-            <p>先看这次筛选之后还剩下多少数据。</p>
           </div>
 
           <div class="report-grid report-grid-overview">
@@ -196,16 +195,15 @@ function goFilters() {
 
         <section class="section-block">
           <div class="section-heading">
-            <p class="section-kicker">分布</p>
+            <p class="section-kicker">Distribution</p>
             <h3>训练分布</h3>
-            <p>先用简单条目把重点分布排出来。</p>
           </div>
 
           <div class="report-grid report-grid-distribution">
             <article class="table-list-card">
               <div class="table-list-head">
-                <span class="stat-label">分组成绩数</span>
-                <span class="table-list-meta">按当前筛选后的分组统计。</span>
+                <span class="stat-label">BY GROUP</span>
+                <span class="table-list-meta">各个分组的成绩数</span>
               </div>
               <ul class="bar-list">
                 <li v-for="session in topSessions" :key="session.id" class="bar-item">
@@ -220,8 +218,8 @@ function goFilters() {
 
             <article class="table-list-card">
               <div class="table-list-head">
-                <span class="stat-label">年份分布</span>
-                <span class="table-list-meta">按成绩记录时间统计。</span>
+                <span class="stat-label">BY YEAR</span>
+                <span class="table-list-meta">每年的成绩数</span>
               </div>
               <ul class="bar-list">
                 <li v-for="item in yearDistribution" :key="item.year" class="bar-item">
@@ -238,9 +236,8 @@ function goFilters() {
 
         <section class="section-block">
           <div class="section-heading">
-            <p class="section-kicker">结论</p>
-            <h3>重点发现</h3>
-            <p>先把最容易读懂的几条信息提出来。</p>
+            <p class="section-kicker">conclusion</p>
+            <h3>重要发现</h3>
           </div>
 
           <div class="insight-grid">
@@ -257,9 +254,8 @@ function goFilters() {
 
         <section class="section-block">
           <div class="section-heading">
-            <p class="section-kicker">分组列表</p>
-            <h3>筛选后的分组</h3>
-            <p>这里保留完整分组列表，方便继续核对。</p>
+            <p class="section-kicker">Group lists</p>
+            <h3>筛选的所有分组</h3>
           </div>
 
           <ul class="session-list session-list-dense">

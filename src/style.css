@@ -83,7 +83,6 @@ a:focus-visible {
 .eyebrow,
 .section-kicker,
 .hero-kicker,
-.topbar-chip,
 .stat-label,
 .mini-label {
   letter-spacing: 0.08em;
@@ -106,16 +105,6 @@ a:focus-visible {
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.02em;
-}
-
-.topbar-chip {
-  white-space: nowrap;
-  color: #1e3a8a;
-  background: rgba(59, 130, 246, 0.12);
-  border: 1px solid rgba(59, 130, 246, 0.18);
-  padding: 10px 14px;
-  border-radius: 999px;
-  font-weight: 600;
 }
 
 .page-wrap {

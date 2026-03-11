@@ -23,7 +23,7 @@ function goReport() {
   <div class="app-shell">
     <header class="topbar">
       <div>
-        <p class="eyebrow">范围筛选</p>
+        <p class="eyebrow">Range Filter</p>
         <h1 class="brand">分组筛选</h1>
       </div>
       <button class="btn btn-secondary topbar-button" type="button" @click="goHome">返回首页</button>
@@ -41,9 +41,9 @@ function goReport() {
       <template v-else>
         <section class="section-block">
           <div class="section-heading">
-            <p class="section-kicker">步骤 1</p>
+            <p class="section-kicker">STEP 1</p>
             <h3>选择年份</h3>
-            <p>可以看全部时间，也可以只看某一年。</p>
+            <p>全部时间 or 某一年</p>
           </div>
 
           <div class="filter-toolbar">
@@ -72,9 +72,9 @@ function goReport() {
 
         <section class="section-block">
           <div class="section-heading">
-            <p class="section-kicker">步骤 2</p>
-            <h3>选择分组</h3>
-            <p>保留想看的训练分组，把测试组和临时组排掉。</p>
+            <p class="section-kicker">STEP 2</p>
+            <h3>筛选分组</h3>
+            <p>保留需要分析的练习分组，排除低价值的数据</p>
           </div>
 
           <div class="filter-toolbar filter-toolbar-actions">
