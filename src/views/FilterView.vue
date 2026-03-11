@@ -39,35 +39,6 @@ function goReport() {
       </section>
 
       <template v-else>
-        <section class="hero-card filter-hero-card">
-          <div class="hero-copy">
-            <p class="hero-kicker">年份 · 分组</p>
-            <h2 class="hero-title">先圈出这次要分析的范围。</h2>
-            <p class="hero-text">
-              先选年份，再挑分组。后面的统计和回顾都会按这里的选择生成。
-            </p>
-          </div>
-
-          <div class="hero-panel filter-summary-panel">
-            <div class="mini-card">
-              <span class="mini-label">当前年份</span>
-              <strong>{{ analyzer.filter.selectedYear === 'all' ? '全部时间' : analyzer.filter.selectedYear }}</strong>
-            </div>
-            <div class="mini-card">
-              <span class="mini-label">已选分组</span>
-              <strong>{{ selectedCount }}</strong>
-            </div>
-            <div class="mini-card">
-              <span class="mini-label">可选年份</span>
-              <strong>{{ analyzer.availableYears.length || '—' }}</strong>
-            </div>
-            <div class="mini-card">
-              <span class="mini-label">筛后分组</span>
-              <strong>{{ analyzer.filteredSessions.length }}</strong>
-            </div>
-          </div>
-        </section>
-
         <section class="section-block">
           <div class="section-heading">
             <p class="section-kicker">步骤 1</p>

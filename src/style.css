@@ -205,13 +205,8 @@ a:focus-visible {
   border-color: rgba(203, 213, 225, 0.95);
 }
 
-.hero-panel {
-  border-radius: 24px;
-  padding: 18px;
-  background: linear-gradient(180deg, rgba(248, 250, 252, 0.92) 0%, rgba(239, 246, 255, 0.9) 100%);
-  border: 1px solid rgba(219, 234, 254, 0.9);
-  display: grid;
-  gap: 14px;
+.hero-card-single {
+  grid-template-columns: 1fr;
 }
 
 .stat-card,
@@ -257,6 +252,11 @@ a:focus-visible {
   gap: 12px;
 }
 
+.stat-grid-wide {
+  margin-top: 16px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .mini-card {
   padding: 16px;
 }
@@ -283,16 +283,15 @@ a:focus-visible {
   color: #b91c1c;
 }
 
-.inspection-card {
-  display: grid;
-  gap: 14px;
-}
-
 .inspection-head {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
+}
+
+.inspection-head-inline {
+  margin-top: 28px;
 }
 
 .inspection-title {
@@ -676,7 +675,8 @@ a:focus-visible {
   .filter-session-grid,
   .report-grid-overview,
   .report-grid-distribution,
-  .insight-grid {
+  .insight-grid,
+  .stat-grid-wide {
     grid-template-columns: 1fr;
   }
 }

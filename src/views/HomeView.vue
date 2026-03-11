@@ -116,7 +116,7 @@ function formatBytes(size: number) {
     </header>
 
     <main class="page-wrap">
-      <section class="hero-card">
+      <section class="hero-card hero-card-single">
         <div class="hero-copy">
           <p class="hero-kicker">本地读取 · 本地分析 · 无需上传</p>
           <h2 class="hero-title">把 DCTimer 数据库整理成一份训练报告。</h2>
@@ -144,11 +144,9 @@ function formatBytes(size: number) {
             <AlertCircle :size="16" />
             {{ importError }}
           </p>
-        </div>
 
-        <div class="hero-panel" aria-label="产品预览卡片">
-          <div v-if="summary" class="inspection-card">
-            <div class="inspection-head">
+          <template v-if="summary">
+            <div class="inspection-head inspection-head-inline">
               <div>
                 <span class="stat-label">最近一次导入</span>
                 <strong class="inspection-title">{{ summary.fileName }}</strong>
@@ -160,7 +158,7 @@ function formatBytes(size: number) {
               </span>
             </div>
 
-            <div class="stat-grid">
+            <div class="stat-grid stat-grid-wide">
               <div class="mini-card">
                 <span class="mini-label">文件大小</span>
                 <strong>{{ formatBytes(summary.fileSize) }}</strong>
@@ -188,87 +186,6 @@ function formatBytes(size: number) {
               <div class="mini-card">
                 <span class="mini-label">DNF 数量</span>
                 <strong>{{ summary.overview.dnfCount }}</strong>
-              </div>
-            </div>
-
-            <div class="table-list-card">
-              <div class="table-list-head">
-                <span class="stat-label">数据库中的数据表</span>
-                <span class="table-list-meta">{{ summary.schema.tableNames.join(' · ') || '无' }}</span>
-              </div>
-
-              <ul class="chip-list">
-                <li v-for="table in summary.schema.tableNames" :key="table" class="table-chip">
-                  {{ table }}
-                </li>
-              </ul>
-            </div>
-
-            <div v-if="summary.sessions.length" class="table-list-card">
-              <div class="table-list-head">
-                <span class="stat-label">已识别的分组</span>
-                <span class="table-list-meta">这些分组可以直接用于后续筛选。</span>
-              </div>
-
-              <ul class="session-list">
-                <li v-for="session in summary.sessions.slice(0, 8)" :key="session.id" class="session-item">
-                  <div>
-                    <strong>{{ session.name }}</strong>
-                    <p>
-                      {{ session.puzzle?.displayName ?? '未知项目' }}
-                      · {{ session.solveCount }} 条成绩
-                      <template v-if="session.lastSolveAt"> · {{ session.lastSolveAt }}</template>
-                    </p>
-                  </div>
-                  <span>#{{ session.id }}</span>
-                </li>
-              </ul>
-            </div>
-
-            <div v-if="summary.solves.length" class="table-list-card">
-              <div class="table-list-head">
-                <span class="stat-label">已读取的成绩数据</span>
-                <span class="table-list-meta">
-                  年份覆盖：{{ summary.overview.yearRange.join(' · ') || '未知' }}
-                  <template v-if="summary.overview.firstSolveAt"> · 最早记录：{{ summary.overview.firstSolveAt }}</template>
-                </span>
-              </div>
-
-              <ul class="session-list">
-                <li v-for="solve in summary.solves.slice(0, 6)" :key="`${solve.sourceTable}-${solve.id}`" class="session-item">
-                  <div>
-                    <strong>分组 #{{ solve.sessionId }} · {{ solve.isDnf ? 'DNF' : `${(solve.finalTimeMs ?? 0) / 1000}s` }}</strong>
-                    <p>{{ solve.sourceTable }} · {{ solve.recordedAt ?? '时间未知' }}</p>
-                  </div>
-                  <span>#{{ solve.id }}</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <template v-else>
-            <div class="stat-card stat-card-primary">
-              <span class="stat-label">开始使用</span>
-              <strong class="stat-value">导入数据库</strong>
-              <span class="stat-meta">导入 DCTimer 导出的数据库后，就可以先看分组和成绩概览。</span>
-            </div>
-
-            <div class="stat-grid">
-              <div class="mini-card">
-                <span class="mini-label">数据处理</span>
-                <strong>浏览器本地完成</strong>
-              </div>
-              <div class="mini-card">
-                <span class="mini-label">支持格式</span>
-                <strong>SQLite 数据库</strong>
-              </div>
-              <div class="mini-card">
-                <span class="mini-label">隐私方式</span>
-                <strong>无需上传</strong>
-              </div>
-              <div class="mini-card">
-                <span class="mini-label">下一步</span>
-                <strong>选择分析分组</strong>
               </div>
             </div>
           </template>
