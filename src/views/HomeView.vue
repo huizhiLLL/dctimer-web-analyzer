@@ -121,7 +121,7 @@ function formatBytes(size: number) {
           <p class="hero-kicker">本地读取 · 本地分析 · 无需上传</p>
           <h2 class="hero-title">把 DCTimer 数据库整理成一份训练报告。</h2>
           <p class="hero-text">
-            {{ app.tagline }} 先选分组，再看结果。
+            DCTimer数据导出方法：打开DCTimer-左上角展开-导入导出数据库-选择导出-确定路径-保存（目前仅测试安卓版本）
           </p>
 
           <div class="hero-actions">
