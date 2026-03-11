@@ -109,7 +109,7 @@ function formatBytes(size: number) {
   <div class="app-shell">
     <header class="topbar">
       <div>
-        <p class="eyebrow">DCTimer Report</p>
+        <p class="eyebrow">训练报告</p>
         <h1 class="brand">{{ app.appName }}</h1>
       </div>
       <div class="topbar-chip">本地解析</div>
@@ -118,10 +118,10 @@ function formatBytes(size: number) {
     <main class="page-wrap">
       <section class="hero-card">
         <div class="hero-copy">
-          <p class="hero-kicker">纯前端 · 本地分析 · 隐私友好</p>
-          <h2 class="hero-title">把 DCTimer 数据库整理成一份清楚的训练报告。</h2>
+          <p class="hero-kicker">本地读取 · 本地分析 · 无需上传</p>
+          <h2 class="hero-title">把 DCTimer 数据库整理成一份训练报告。</h2>
           <p class="hero-text">
-            {{ app.tagline }} 先选分组，再看结果。整个过程都在浏览器本地完成。
+            {{ app.tagline }} 先选分组，再看结果。
           </p>
 
           <div class="hero-actions">
@@ -207,7 +207,7 @@ function formatBytes(size: number) {
             <div v-if="summary.sessions.length" class="table-list-card">
               <div class="table-list-head">
                 <span class="stat-label">已识别的分组</span>
-                <span class="table-list-meta">这些分组已经可以用于后续筛选与分析。</span>
+                <span class="table-list-meta">这些分组可以直接用于后续筛选。</span>
               </div>
 
               <ul class="session-list">
@@ -277,10 +277,10 @@ function formatBytes(size: number) {
 
       <section class="section-block">
         <div class="section-heading">
-          <p class="section-kicker">Core Experience</p>
+          <p class="section-kicker">主要特点</p>
           <h3>你会看到什么</h3>
           <p>
-            页面以卡片方式展示，方便你快速回顾训练数据，也方便后续继续整理。
+            页面以卡片方式展示，方便回顾训练数据，也方便继续整理。
           </p>
         </div>
 
@@ -297,10 +297,10 @@ function formatBytes(size: number) {
 
       <section class="section-block section-block-muted">
         <div class="section-heading narrow">
-          <p class="section-kicker">Next Step</p>
-          <h3>下一步</h3>
+          <p class="section-kicker">下一步</p>
+          <h3>继续筛选</h3>
           <p>
-            导入完成后，可以按年份和分组缩小范围，继续看统计和训练分布。
+            导入完成后，可以按年份和分组缩小范围，再看统计和训练分布。
           </p>
         </div>
       </section>
