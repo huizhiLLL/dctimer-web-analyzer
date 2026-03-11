@@ -109,27 +109,27 @@ function formatBytes(size: number) {
   <div class="app-shell">
     <header class="topbar">
       <div>
-        <p class="eyebrow">DCTimer Annual Report</p>
+        <p class="eyebrow">DCTimer Report</p>
         <h1 class="brand">{{ app.appName }}</h1>
       </div>
-      <div class="topbar-chip">SQLite Ready</div>
+      <div class="topbar-chip">本地解析</div>
     </header>
 
     <main class="page-wrap">
       <section class="hero-card">
         <div class="hero-copy">
-          <p class="hero-kicker">纯前端 · 本地分析 · 年度总结风格</p>
-          <h2 class="hero-title">把 DCTimer 的数据库，变成一份真正值得回看的年度报告。</h2>
+          <p class="hero-kicker">纯前端 · 本地分析 · 隐私友好</p>
+          <h2 class="hero-title">把 DCTimer 的数据库，整理成一份值得回看的训练报告。</h2>
           <p class="hero-text">
-            {{ app.tagline }} 先筛选分组，再做汇总分析。现在已经可以直接导入 `.db` 文件，并查看 schema 探测结果。
+            {{ app.tagline }} 先选择想纳入分析的分组，再生成更清晰的训练概览与年度回顾。整个过程都在浏览器本地完成。
           </p>
 
           <div class="hero-actions">
             <button class="btn btn-primary" type="button" @click="openFilePicker" :disabled="isInspecting">
               <FileSearch :size="18" />
-              {{ isInspecting ? '正在读取数据库…' : '导入 .db 文件' }}
+              {{ isInspecting ? '正在导入数据库…' : '导入 .db 文件' }}
             </button>
-            <button class="btn btn-secondary" type="button" @click="goToFilters" :disabled="!summary">进入分组筛选</button>
+            <button class="btn btn-secondary" type="button" @click="goToFilters" :disabled="!summary">选择分析分组</button>
           </div>
 
           <input
@@ -193,7 +193,7 @@ function formatBytes(size: number) {
 
             <div class="table-list-card">
               <div class="table-list-head">
-                <span class="stat-label">已探测到的表</span>
+                <span class="stat-label">数据库中的数据表</span>
                 <span class="table-list-meta">{{ summary.schema.tableNames.join(' · ') || '无' }}</span>
               </div>
 
@@ -206,8 +206,8 @@ function formatBytes(size: number) {
 
             <div v-if="summary.sessions.length" class="table-list-card">
               <div class="table-list-head">
-                <span class="stat-label">已解析的分组</span>
-                <span class="table-list-meta">现在分组已经带上了解次统计，后面可以直接接筛选页了。</span>
+                <span class="stat-label">已识别的分组</span>
+                <span class="table-list-meta">这些分组已经可以用于后续筛选与分析。</span>
               </div>
 
               <ul class="session-list">
@@ -215,8 +215,8 @@ function formatBytes(size: number) {
                   <div>
                     <strong>{{ session.name }}</strong>
                     <p>
-                      {{ session.puzzle?.displayName ?? 'Unknown puzzle type' }}
-                      · {{ session.solveCount }} solves
+                      {{ session.puzzle?.displayName ?? '未知项目' }}
+                      · {{ session.solveCount }} 条成绩
                       <template v-if="session.lastSolveAt"> · {{ session.lastSolveAt }}</template>
                     </p>
                   </div>
@@ -227,17 +227,17 @@ function formatBytes(size: number) {
 
             <div v-if="summary.solves.length" class="table-list-card">
               <div class="table-list-head">
-                <span class="stat-label">已解析的成绩数据</span>
+                <span class="stat-label">已读取的成绩数据</span>
                 <span class="table-list-meta">
                   年份覆盖：{{ summary.overview.yearRange.join(' · ') || '未知' }}
-                  <template v-if="summary.overview.firstSolveAt"> · 首条：{{ summary.overview.firstSolveAt }}</template>
+                  <template v-if="summary.overview.firstSolveAt"> · 最早记录：{{ summary.overview.firstSolveAt }}</template>
                 </span>
               </div>
 
               <ul class="session-list">
                 <li v-for="solve in summary.solves.slice(0, 6)" :key="`${solve.sourceTable}-${solve.id}`" class="session-item">
                   <div>
-                    <strong>Session #{{ solve.sessionId }} · {{ solve.isDnf ? 'DNF' : `${(solve.finalTimeMs ?? 0) / 1000}s` }}</strong>
+                    <strong>分组 #{{ solve.sessionId }} · {{ solve.isDnf ? 'DNF' : `${(solve.finalTimeMs ?? 0) / 1000}s` }}</strong>
                     <p>{{ solve.sourceTable }} · {{ solve.recordedAt ?? '无记录时间' }}</p>
                   </div>
                   <span>#{{ solve.id }}</span>
@@ -248,27 +248,27 @@ function formatBytes(size: number) {
 
           <template v-else>
             <div class="stat-card stat-card-primary">
-              <span class="stat-label">当前进度</span>
-              <strong class="stat-value">Schema Probe</strong>
-              <span class="stat-meta">已经接入 sql.js，可读取 SQLite 并识别 DCTimer 关键表。</span>
+              <span class="stat-label">开始使用</span>
+              <strong class="stat-value">导入数据库</strong>
+              <span class="stat-meta">选择 DCTimer 导出的数据库文件后，就可以开始查看分组和成绩概览。</span>
             </div>
 
             <div class="stat-grid">
               <div class="mini-card">
-                <span class="mini-label">SQLite 引擎</span>
-                <strong>sql.js</strong>
+                <span class="mini-label">数据处理</span>
+                <strong>浏览器本地完成</strong>
               </div>
               <div class="mini-card">
-                <span class="mini-label">文件读取</span>
-                <strong>已接通</strong>
+                <span class="mini-label">支持格式</span>
+                <strong>SQLite 数据库</strong>
               </div>
               <div class="mini-card">
-                <span class="mini-label">Schema 探测</span>
-                <strong>已接通</strong>
+                <span class="mini-label">隐私方式</span>
+                <strong>无需上传</strong>
               </div>
               <div class="mini-card">
                 <span class="mini-label">下一步</span>
-                <strong>进入筛选页</strong>
+                <strong>选择分析分组</strong>
               </div>
             </div>
           </template>
@@ -278,9 +278,9 @@ function formatBytes(size: number) {
       <section class="section-block">
         <div class="section-heading">
           <p class="section-kicker">Core Experience</p>
-          <h3>第一版界面方向</h3>
+          <h3>你会得到什么</h3>
           <p>
-            移动端优先，卡片化布局，视觉克制但不单调。更像高级数据作品，而不是传统后台。
+            移动端优先，卡片化呈现，适合快速回顾自己的训练数据，也方便后续整理成更完整的年度报告。
           </p>
         </div>
 
@@ -298,9 +298,9 @@ function formatBytes(size: number) {
       <section class="section-block section-block-muted">
         <div class="section-heading narrow">
           <p class="section-kicker">Next Step</p>
-          <h3>接下来会开始解析 session 和结果表</h3>
+          <h3>接下来可以继续筛选并查看训练结构</h3>
           <p>
-            下一阶段会继续把 `sessiontb`、固定结果表和 `resultstb` 统一成可筛选、可聚合的业务数据模型。
+            导入完成后，可以按年份和分组缩小范围，为后续的统计、趋势和年度回顾准备更干净的数据。
           </p>
         </div>
       </section>
