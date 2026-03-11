@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=JetBrains+Mono:wght@500;700&display=swap');
 
 :root {
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: 'Inter', 'Noto Sans SC', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color: #0f172a;
@@ -26,6 +26,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  font-family: 'Inter', 'Noto Sans SC', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 a {
@@ -100,8 +101,11 @@ a:focus-visible {
 
 .brand {
   margin: 6px 0 0;
+  font-family: 'Noto Serif SC', 'Times New Roman', serif;
   font-size: clamp(1.25rem, 2vw, 1.75rem);
-  line-height: 1.1;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
 }
 
 .topbar-chip {
@@ -132,6 +136,7 @@ a:focus-visible {
 .hero-card {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
+  align-items: start;
   gap: 24px;
   padding: 24px;
 }
@@ -139,14 +144,18 @@ a:focus-visible {
 .hero-copy {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  align-self: start;
+  min-height: 0;
 }
 
 .hero-title {
   margin: 10px 0 0;
+  font-family: 'Noto Serif SC', 'Times New Roman', serif;
   font-size: clamp(2rem, 5vw, 4rem);
-  line-height: 1.06;
-  letter-spacing: -0.04em;
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
 }
 
 .hero-text,
@@ -154,7 +163,7 @@ a:focus-visible {
 .feature-card p {
   color: #475569;
   font-size: 1rem;
-  line-height: 1.72;
+  line-height: 1.78;
 }
 
 .hero-actions {
@@ -289,7 +298,10 @@ a:focus-visible {
 .inspection-title {
   display: block;
   margin-top: 8px;
+  font-family: 'Noto Serif SC', 'Times New Roman', serif;
   font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.35;
   word-break: break-all;
 }
 
@@ -375,7 +387,10 @@ a:focus-visible {
 
 .session-item strong {
   display: block;
-  font-size: 0.96rem;
+  font-family: 'Noto Serif SC', 'Times New Roman', serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.35;
 }
 
 .session-item p {
@@ -405,9 +420,11 @@ a:focus-visible {
 
 .section-heading h3 {
   margin: 8px 0 0;
+  font-family: 'Noto Serif SC', 'Times New Roman', serif;
   font-size: clamp(1.5rem, 3vw, 2.2rem);
-  line-height: 1.12;
-  letter-spacing: -0.03em;
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.025em;
 }
 
 .section-heading p {
@@ -507,7 +524,10 @@ a:focus-visible {
 }
 
 .filter-session-card strong {
+  font-family: 'Noto Serif SC', 'Times New Roman', serif;
   font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
 }
 
 .filter-session-card p,
@@ -528,7 +548,10 @@ a:focus-visible {
 
 .feature-card h4 {
   margin: 14px 0 8px;
+  font-family: 'Noto Serif SC', 'Times New Roman', serif;
   font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.3;
 }
 
 .feature-card p {
@@ -607,8 +630,10 @@ a:focus-visible {
 }
 
 .insight-value {
+  font-family: 'Noto Serif SC', 'Times New Roman', serif;
   font-size: 1.05rem;
-  line-height: 1.35;
+  font-weight: 700;
+  line-height: 1.4;
 }
 
 .session-list-dense {
