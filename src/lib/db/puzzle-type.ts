@@ -56,6 +56,6 @@ export function decodePuzzleType(code: number | null): PuzzleTypeInfo | null {
     sub,
     categoryName,
     itemName,
-    displayName: itemName ? `${categoryName} · ${itemName}` : `${categoryName ?? 'Unknown'} (#${code})`,
+    displayName: itemName ? `${categoryName} · ${itemName}` : `${categoryName ?? '未知项目'} (#${code})`,
   }
 }

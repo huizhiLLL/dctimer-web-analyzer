@@ -22,7 +22,7 @@ function goHome() {
         <p class="eyebrow">Report Filters</p>
         <h1 class="brand">分组筛选</h1>
       </div>
-      <button class="btn btn-secondary topbar-button" type="button" @click="goHome">返回导入页</button>
+      <button class="btn btn-secondary topbar-button" type="button" @click="goHome">返回首页</button>
     </header>
 
     <main class="page-wrap">

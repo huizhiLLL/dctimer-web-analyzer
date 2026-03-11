@@ -56,7 +56,7 @@ const detectedStatus = computed(() => {
 
   return {
     tone: 'warning',
-    label: '文件能打开，但不像 DCTimer 导出的数据库',
+    label: '文件已打开，但不像 DCTimer 数据库',
     icon: AlertCircle,
   }
 })
@@ -81,7 +81,7 @@ async function handleFileChange(event: Event) {
     summary.value = await importDatabaseSummary(file)
     analyzer.setSummary(summary.value)
   } catch (error) {
-    importError.value = error instanceof Error ? error.message : '文件读取失败，可能不是有效的 SQLite 数据库。'
+    importError.value = error instanceof Error ? error.message : '导入失败，文件可能不是可用的 SQLite 数据库。'
   } finally {
     isInspecting.value = false
     input.value = ''
@@ -238,7 +238,7 @@ function formatBytes(size: number) {
                 <li v-for="solve in summary.solves.slice(0, 6)" :key="`${solve.sourceTable}-${solve.id}`" class="session-item">
                   <div>
                     <strong>分组 #{{ solve.sessionId }} · {{ solve.isDnf ? 'DNF' : `${(solve.finalTimeMs ?? 0) / 1000}s` }}</strong>
-                    <p>{{ solve.sourceTable }} · {{ solve.recordedAt ?? '无记录时间' }}</p>
+                    <p>{{ solve.sourceTable }} · {{ solve.recordedAt ?? '时间未知' }}</p>
                   </div>
                   <span>#{{ solve.id }}</span>
                 </li>
