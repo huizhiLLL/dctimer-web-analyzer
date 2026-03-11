@@ -164,14 +164,6 @@ function formatBytes(size: number) {
                 <strong>{{ formatBytes(summary.fileSize) }}</strong>
               </div>
               <div class="mini-card">
-                <span class="mini-label">表数量</span>
-                <strong>{{ summary.schema.tableNames.length }}</strong>
-              </div>
-              <div class="mini-card">
-                <span class="mini-label">结果表</span>
-                <strong>{{ summary.check.resultTables.length }}</strong>
-              </div>
-              <div class="mini-card">
                 <span class="mini-label">分组数量</span>
                 <strong>{{ summary.overview.sessionCount }}</strong>
               </div>
@@ -212,15 +204,6 @@ function formatBytes(size: number) {
         </div>
       </section>
 
-      <section class="section-block section-block-muted">
-        <div class="section-heading narrow">
-          <p class="section-kicker">下一步</p>
-          <h3>继续筛选</h3>
-          <p>
-            导入完成后，可以按年份和分组缩小范围，再看统计和训练分布。
-          </p>
-        </div>
-      </section>
     </main>
   </div>
 </template>
