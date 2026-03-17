@@ -1,11 +1,18 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
+import { enrichSolves } from '../lib/analysis/enrich-solves'
+import { buildFilteredDataset } from '../lib/analysis/filter-dataset'
+import { buildPuzzleStats } from '../lib/analysis/puzzle-stats'
+import { buildSessionStats } from '../lib/analysis/session-stats'
+import { buildSummaryMetrics } from '../lib/analysis/summary-metrics'
+import type {
+  AnalyzerFilter,
+  FilteredDataset,
+  PuzzleStats,
+  SessionStats,
+  SummaryMetrics,
+} from '../lib/analysis/types'
 import type { ImportDatabaseSummary, SessionEntity } from '../lib/db/types'
-
-export type AnalyzerFilter = {
-  selectedYear: number | 'all'
-  includedSessionIds: number[]
-}
 
 function sortSessions(sessions: SessionEntity[]) {
   return [...sessions].sort((a, b) => {
@@ -27,27 +34,31 @@ export const useAnalyzerStore = defineStore('analyzer', () => {
   const availableYears = computed(() => summary.value?.overview.yearRange ?? [])
   const sessions = computed(() => sortSessions(summary.value?.sessions ?? []))
   const allSessionIds = computed(() => sessions.value.map((session) => session.id))
+  const enrichedSolves = computed(() => enrichSolves(summary.value?.solves ?? []))
 
-  const filteredSessions = computed(() => {
-    const selectedIds = new Set(filter.value.includedSessionIds)
+  const filteredDataset = computed<FilteredDataset | null>(() => {
+    if (!summary.value) {
+      return null
+    }
 
-    return sessions.value.filter((session) => {
-      if (selectedIds.size > 0 && !selectedIds.has(session.id)) {
-        return false
-      }
-
-      if (filter.value.selectedYear === 'all') {
-        return true
-      }
-
-      if (!session.lastSolveAt && !session.firstSolveAt) {
-        return false
-      }
-
-      const targets = [session.firstSolveAt, session.lastSolveAt].filter((value): value is string => Boolean(value))
-      return targets.some((value) => value.startsWith(String(filter.value.selectedYear)))
+    return buildFilteredDataset({
+      filter: filter.value,
+      sessions: sessions.value,
+      solves: enrichedSolves.value,
     })
   })
+
+  const filteredSessions = computed(() => filteredDataset.value?.sessions ?? [])
+  const filteredSolves = computed(() => filteredDataset.value?.solves ?? [])
+  const summaryMetrics = computed<SummaryMetrics | null>(() =>
+    filteredDataset.value ? buildSummaryMetrics(filteredDataset.value.solves) : null,
+  )
+  const sessionStats = computed<SessionStats[]>(() =>
+    filteredDataset.value ? buildSessionStats(filteredDataset.value) : [],
+  )
+  const puzzleStats = computed<PuzzleStats[]>(() =>
+    filteredDataset.value ? buildPuzzleStats(filteredDataset.value) : [],
+  )
 
   function setSummary(nextSummary: ImportDatabaseSummary) {
     summary.value = nextSummary
@@ -96,7 +107,13 @@ export const useAnalyzerStore = defineStore('analyzer', () => {
     filter,
     availableYears,
     sessions,
+    enrichedSolves,
+    filteredDataset,
     filteredSessions,
+    filteredSolves,
+    summaryMetrics,
+    sessionStats,
+    puzzleStats,
     setSummary,
     setSelectedYear,
     toggleSession,

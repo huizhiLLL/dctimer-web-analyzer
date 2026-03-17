@@ -24,6 +24,27 @@ export type DctimerSchemaCheck = {
   isLikelyDctimer: boolean
 }
 
+export type ParserWarning = {
+  code:
+    | 'MISSING_OPTIONAL_COLUMN'
+    | 'UNKNOWN_PUZZLE_TYPE'
+    | 'INVALID_TIME_STRING'
+    | 'UNKNOWN_RESULT_TABLE'
+    | 'PARTIAL_PARSE'
+  message: string
+  detail?: Record<string, unknown>
+}
+
+export type ParserError = {
+  code:
+    | 'INVALID_SQLITE_FILE'
+    | 'NOT_DCTIMER_DB'
+    | 'MISSING_SESSION_TABLE'
+    | 'READ_FAILED'
+  message: string
+  detail?: Record<string, unknown>
+}
+
 export type PuzzleTypeInfo = {
   code: number
   idx: number | null
@@ -81,4 +102,6 @@ export type ImportDatabaseSummary = {
   overview: DatabaseOverview
   sessions: SessionEntity[]
   solves: SolveEntity[]
+  warnings: ParserWarning[]
+  errors: ParserError[]
 }

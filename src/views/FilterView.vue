@@ -9,6 +9,7 @@ const analyzer = useAnalyzerStore()
 
 const hasSummary = computed(() => Boolean(analyzer.summary))
 const selectedCount = computed(() => analyzer.filter.includedSessionIds.length)
+const hasFilteredSessions = computed(() => analyzer.filteredSessions.length > 0)
 
 function goHome() {
   router.push('/')
@@ -23,8 +24,9 @@ function goReport() {
   <div class="app-shell">
     <header class="topbar">
       <div>
-        <p class="eyebrow">Range Filter</p>
-        <h1 class="brand">分组筛选</h1>
+        <p class="eyebrow">Range Filter / 范围筛选</p>
+        <h1 class="brand">选择这份报告要使用的数据范围</h1>
+        <p class="topbar-tagline">保留你真正想写进报告里的年份和分组，把结果收束得更干净。</p>
       </div>
       <button class="btn btn-secondary topbar-button" type="button" @click="goHome">返回首页</button>
     </header>
@@ -32,18 +34,18 @@ function goReport() {
     <main class="page-wrap">
       <section v-if="!hasSummary" class="section-block section-block-muted">
         <div class="section-heading narrow">
-          <p class="section-kicker">尚无数据</p>
-          <h3>还没有数据</h3>
-          <p>先回首页导入 `.db` 文件，这里才会出现可选分组。</p>
+          <p class="section-kicker">No Data Yet / 暂无数据</p>
+          <h3>请先导入数据库，再进行筛选。</h3>
+          <p>当首页完成 `.db` 文件检查后，这里就会出现可选的年份范围和分组列表。</p>
         </div>
       </section>
 
       <template v-else>
         <section class="section-block">
           <div class="section-heading">
-            <p class="section-kicker">STEP 1</p>
-            <h3>选择年份</h3>
-            <p>全部时间 or 某一年</p>
+            <p class="section-kicker">Step 1 / 第一步</p>
+            <h3>选择时间范围</h3>
+            <p>可以保留全部年份，也可以先聚焦某一年，再继续决定哪些分组要进入报告。</p>
           </div>
 
           <div class="filter-toolbar">
@@ -72,9 +74,9 @@ function goReport() {
 
         <section class="section-block">
           <div class="section-heading">
-            <p class="section-kicker">STEP 2</p>
-            <h3>筛选分组</h3>
-            <p>保留需要分析的练习分组，排除低价值的数据</p>
+            <p class="section-kicker">Step 2 / 第二步</p>
+            <h3>挑选要纳入的分组</h3>
+            <p>把真正能代表这份训练报告的分组留下来，让最终结果更聚焦，也更有表达性。</p>
           </div>
 
           <div class="filter-toolbar filter-toolbar-actions">
@@ -84,15 +86,15 @@ function goReport() {
             </button>
             <button class="pill-button" type="button" @click="analyzer.clearSessions()">
               <Eraser :size="16" />
-              全不选
+              清空
             </button>
             <button class="pill-button pill-button-primary" type="button" @click="goReport" :disabled="!selectedCount">
               <BarChart3 :size="16" />
-              查看结果
+              查看报告
             </button>
           </div>
 
-          <div class="filter-session-grid">
+          <div v-if="hasFilteredSessions" class="filter-session-grid">
             <label
               v-for="session in analyzer.filteredSessions"
               :key="session.id"
@@ -121,6 +123,10 @@ function goReport() {
                 <span v-if="session.lastSolveAt">{{ session.lastSolveAt }}</span>
               </div>
             </label>
+          </div>
+
+          <div v-else class="section-heading narrow">
+            <p>当前年份和分组条件下没有可分析的数据，可以切换年份或重新选择分组。</p>
           </div>
         </section>
       </template>
